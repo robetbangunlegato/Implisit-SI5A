@@ -10,50 +10,41 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
-    EditText EtUrl,EtLokasi,EtTeks;
-    Button BtnBukaWibesite,BtnBukaLokasi,BtnBagikanTeks;
+    EditText etUrl,etLokasi,etTeks;
+    Button btnBukaWibesite,btnBukaLokasi,btnBagikanTeks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EtUrl.findViewById(R.id.et_url);
-        EtLokasi.findViewById(R.id.et_lokasi);
-        EtTeks.findViewById(R.id.et_teks);
-        BtnBukaWibesite.findViewById(R.id.btn_buka_wibesite);
-        BtnBukaLokasi.findViewById(R.id.btn_buka_lokasi);
-        BtnBagikanTeks.findViewById(R.id.btn_bagikan_teks);
 
-        BtnBukaWibesite.setOnClickListener(new View.OnClickListener() {
+        etUrl = findViewById(R.id.et_url);
+        etLokasi = findViewById(R.id.et_lokasi);
+        etTeks = findViewById(R.id.et_teks);
+        btnBukaWibesite = findViewById(R.id.btn_buka_website);
+        btnBukaLokasi = findViewById(R.id.btn_buka_lokasi);
+        btnBagikanTeks = findViewById(R.id.btn_bagikan_teks);
+
+        btnBukaWibesite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String web = EtUrl.getText().toString();
+                String web = etUrl.getText().toString();
                 Uri uriUrlWebsite = Uri.parse(web);
                 Intent intentWebsite = new Intent(Intent.ACTION_VIEW, uriUrlWebsite);
                 try{
                     startActivity(intentWebsite);
-                }catch (Exception e){
-                    EtUrl.setError("URL Tidak Sesuai !!!");
                 }
-
-
-//                if (web.trim().equals("")){
-//                    EtUrl.setError("Isi");
-//                }
+                catch (Exception e){
+                    etUrl.setError("URL Tidak Sesuai !!!");
+                }
             }
         });
 
-        BtnBukaLokasi.setOnClickListener(new View.OnClickListener() {
+        btnBukaLokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String lokasi = EtLokasi.getText().toString();
-            }
-        });
+                String lokasi = etLokasi.getText().toString();
 
-        BtnBagikanTeks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String teks = EtTeks.getText().toString();
             }
         });
     }
